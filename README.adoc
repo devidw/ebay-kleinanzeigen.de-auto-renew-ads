@@ -33,7 +33,6 @@ You can run the application manually be running `php automation.php` in your pro
 
 To automate the process you can simply set up a cron job, which fires the script every week:
 
-.Cron Job Setup
 ----
 0 0 * * 7
 ----
