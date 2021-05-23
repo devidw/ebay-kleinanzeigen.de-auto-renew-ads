@@ -1,0 +1,39 @@
+= Auto Renew Automation for ebay Kleinanzeigen Offers
+
+Offers on https://ebay-kleinanzeigen.de[ebay-kleinanzeigen.de] are online for 60 day and have to been renewed manually before that period of time passes.
+
+So why not automate that to never ever have to care about expiring offers? 😜
+
+
+== Requirements
+Automation is possible because ebay sends an email containing the renewal link one week before the expiring date of the offer. So basically what the application does, is as simple as the following:
+
+.Workflow
+. reading your inbox
+. looking for email with the right subject
+. parsing these emails and find the renewal link
+. following the link
+. deleting the email, so it won't be parsed again
+. voilà, that's it! 🥳
+
+.Requirements
+* Mailbox with IMAP access
+* PHP 8
+
+== Workflow Setup
+Follow the following steps to also auto renew *your* offers:
+
+=== Application Installation
+.Application Installation
+. Clone or download this repo
+. Fill in your IMAP data to `imap_sample.json` and rename it to `imap.json`
+
+=== Cron Job
+You can run the application manually be running `php automation.php` in your project directory or opening `automation.php` in your browser if you're in a web server environment.
+
+To automate the process you can simply set up a cron job, which fires the script every week:
+
+.Cron Job Setup
+----
+0 0 * * 7
+----

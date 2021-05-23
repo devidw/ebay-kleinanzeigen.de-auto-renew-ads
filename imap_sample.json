@@ -1,0 +1,5 @@
+{
+  "server": "{imap.server.host:993/imap/ssl/novalidate-cert}",
+  "username": "e@ma.il",
+  "password": "supersecret"
+}
