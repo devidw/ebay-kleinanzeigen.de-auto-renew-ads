@@ -1,17 +1,27 @@
 <?php
 require_once(__DIR__.'/parser.php');
 
-$json = file_get_contents(__DIR__.'/imap.json');
-$imap = json_decode($json);
+$json = file_get_contents(__DIR__.'/config.json');
+$config = json_decode($json);
+
+// create save directory if it doesn't exist already
+if (!is_dir($config->saveDir)) {
+  mkdir($config->saveDir);
+}
+
+// make sure imap extension is available as it's needed
+if (!extension_loaded('imap')) {
+  throw new \Exception('php imap extension is needed');
+}
 
 $connection = imap_open(
-  $imap->server,
-  $imap->username,
-  $imap->password
+  $config->imap->server,
+  $config->imap->username,
+  $config->imap->password
 );
 
 // list all mailboxes
-// $mailboxes = imap_list($connection, $imap->server, '*');
+// $mailboxes = imap_list($connection, $config->imap->server, '*');
 // var_dump($mailboxes);
 
 $mailbox = imap_check($connection);
@@ -33,7 +43,7 @@ foreach ($overviews as $overview) {
     $body = preg_replace('/\r|\n/', '', $body); // remove line breaks
     // $body = quoted_printable_decode($body); // https://stackoverflow.com/a/4016098/13765033
     // echo $body;
-    $save_path = './saves/email_'.time().'.txt';
+    $save_path = $config->saveDir.'/email_'.time().'.txt';
     file_put_contents($save_path, $body);
 
     $adId = get_aId($body);
@@ -46,7 +56,7 @@ foreach ($overviews as $overview) {
       // echo $request;
       $response = file_get_contents($request);
       // echo $response;
-      $save_path = './saves/response_'.time().'.html';
+      $save_path = $config->saveDir.'/response_'.time().'.html';
       file_put_contents($save_path, $response);
 
       echo <<<HTML
