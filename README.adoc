@@ -4,7 +4,7 @@ Offers on https://ebay-kleinanzeigen.de[ebay-kleinanzeigen.de] are online for 60
 
 So why not automate that to never ever have to care about expiring offers? 😜
 
-
+== Workflow
 Automation is possible because ebay sends an email containing the renewal link one week before the expiring date of the offer. So basically what the application does, is as simple as the following:
 
 .Workflow
@@ -15,15 +15,14 @@ Automation is possible because ebay sends an email containing the renewal link o
 . deleting the email, so it won't be parsed again
 . voilà, that's it! 🥳
 
-.Requirements
+== Requirements
 * Mailbox with IMAP access
 * PHP 8
 
-== Workflow Setup
+== Setup
 Follow the following steps to also auto renew *your* offers:
 
 === Application Installation
-.Application Installation
 . Clone or download this repo
 . Fill in your IMAP data to `imap_sample.json` and rename it to `imap.json`
 
