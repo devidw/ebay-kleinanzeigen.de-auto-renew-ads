@@ -5,7 +5,6 @@ Offers on https://ebay-kleinanzeigen.de[ebay-kleinanzeigen.de] are online for 60
 So why not automate that to never ever have to care about expiring offers? 😜
 
 
-== Requirements
 Automation is possible because ebay sends an email containing the renewal link one week before the expiring date of the offer. So basically what the application does, is as simple as the following:
 
 .Workflow
