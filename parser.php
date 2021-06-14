@@ -6,7 +6,7 @@
  * @param string $body
  * @return string
  */
-function get_aId(string $body) {
+function get_adId(string $body) {
   $pattern = '/adId=3D([0-9a-z=]+)&/';
   $success = preg_match($pattern, $body, $adId);
   $adId = $adId[1];
