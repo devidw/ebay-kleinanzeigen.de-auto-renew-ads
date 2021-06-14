@@ -46,7 +46,7 @@ foreach ($overviews as $overview) {
     $save_path = $config->saveDir.'/email_'.time().'.txt';
     file_put_contents($save_path, $body);
 
-    $adId = get_aId($body);
+    $adId = get_adId($body);
     $uuid = get_uuid($body);
     // print_r($uuid);
     // print_r($adId);
