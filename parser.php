@@ -4,14 +4,13 @@
  * find `adId` GET-Parameter in renewal link inside email body
  *
  * @param string $body
- * @return string
+ *
+ * @return string|bool
  */
-function get_aId(string $body) {
+ function get_adId(string $body): string|bool {
   $pattern = '/adId=3D([0-9a-z=]+)&/';
   $success = preg_match($pattern, $body, $adId);
-  $adId = $adId[1];
-  $adId = str_replace('=', '', $adId);
-  return ($success) ? $adId : false;
+  return ($success) ? str_replace('=', '', $adId[1]) : false;
 }
 
 
@@ -19,11 +18,11 @@ function get_aId(string $body) {
  * find `uuid` GET-Parameter in renewal link inside email body
  *
  * @param string $body
- * @return string
+ *
+ * @return string|bool
  */
-function get_uuid(string $body) {
-  $pattern = '/uuid=3D([0-9a-z-]+)&/';
+function get_uuid(string $body): string|bool {
+  $pattern = '/uuid=3D([0-9a-z-=]+)&/';
   $success = preg_match($pattern, $body, $uuid);
-  $uuid = $uuid[1];
-  return ($success) ? $uuid : false;
+  return ($success) ? str_replace('=', '', $uuid[1]) : false;
 }

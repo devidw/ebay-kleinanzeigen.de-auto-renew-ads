@@ -46,7 +46,7 @@ foreach ($overviews as $overview) {
     $save_path = $config->saveDir.'/email_'.time().'.txt';
     file_put_contents($save_path, $body);
 
-    $adId = get_aId($body);
+    $adId = get_adId($body);
     $uuid = get_uuid($body);
     // print_r($uuid);
     // print_r($adId);
@@ -66,6 +66,11 @@ foreach ($overviews as $overview) {
       // move email into trash
       // imap_mail_move($connection, $msgno, 'INBOX.Trash');
       imap_delete($connection, $msgno);
+    } else {
+      echo <<<HTML
+      <p><strong>no adid and or uuid found</strong><br></p>\n\r
+      HTML;
+      // echo $body;
     }
   }
 }
