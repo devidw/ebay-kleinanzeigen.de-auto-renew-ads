@@ -43,7 +43,7 @@ foreach ($overviews as $overview) {
     $body = preg_replace('/\r|\n/', '', $body); // remove line breaks
     // $body = quoted_printable_decode($body); // https://stackoverflow.com/a/4016098/13765033
     // echo $body;
-    $save_path = $config->saveDir.'/email_'.time().'.txt';
+    $save_path = $config->saveDir.'/email_'.time().'.html';
     file_put_contents($save_path, $body);
 
     $adId = get_adId($body);
